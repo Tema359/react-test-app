@@ -1,47 +1,5 @@
-// https://swapi.dev
-class SwapiService {
-  _apiBase = 'https://swapi.dev/api';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/app/App';
 
-  async getResourse(url) {
-    const res = await fetch(`${this._apiBase}${url}`);
-
-    if (!res.ok) {
-      throw new Error(`Could not Fetch ${url}` + `recived ${res.status}`);
-    }
-    return await res.json();
-  }
-
-  async getAllPeople() {
-    const res = await this.getResourse(`/people/`);
-    return res.results;
-  }
-
-  getPerson(id) {
-    return this.getResourse(`/people/${id}/`);
-  }
-
-  async getAllPlanets() {
-    const res = await this.getResourse(`/planets/`);
-    return res.results;
-  }
-
-  getPlanet(id) {
-    return this.getResourse(`/planets/${id}/`);
-  }
-
-  async getAllStarships() {
-    const res = await this.getResourse(`/starships/`);
-    return res.results;
-  }
-
-  getStarship(id) {
-    return this.getResourse(`/starships/${id}/`);
-  }
-}
-
-
-const swapi = new SwapiService();
-
-swapi.getAllStarships().then((p) => {
-    console.log(p);
-});
+ReactDOM.render(<App />, document.getElementById('root'));
