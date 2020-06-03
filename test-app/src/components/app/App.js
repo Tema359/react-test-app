@@ -7,7 +7,7 @@ import PersonDetails from '../PersonDetails/PersonDetails';
 
 const App = () => {
   return (
-    <div>
+    <div className="app">
       <Header />
       <RandomPlanet />
       <div className="row mb2">
