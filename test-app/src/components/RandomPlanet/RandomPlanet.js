@@ -5,17 +5,22 @@ import ErrorIndicator from '../ErrorIndicator/ErrorIndicator';
 import './RandomPlanet.css';
 
 export default class RandomPlanet extends Component {
-  constructor() {
-    super();
-    this.updatePlanet();
-    this.state = {
+
+  swapiService = new SwapiServ();
+
+    state = {
       planet: {},
       loading: true,
       error: false,
     };
+  componentDidMount() {
+    this.updatePlanet();
+    this.interval = setInterval(this.updatePlanet, 10500);
   }
 
-  swapiService = new SwapiServ();
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
 
   onPlanetLoaded = (planet) => {
     this.setState({ planet, loading: false });
@@ -23,12 +28,12 @@ export default class RandomPlanet extends Component {
 
   onError = (err) => {
     this.setState({ error: true, loading: false });
-  }
+  };
 
-  updatePlanet() {
-    const id = 13;
+  updatePlanet = () => {
+    const id = Math.floor(Math.random() * 25) + 3;
     this.swapiService.getPlanet(id).then(this.onPlanetLoaded).catch(this.onError);
-  }
+  };
 
   render() {
     const { planet, loading, error } = this.state;
@@ -53,7 +58,7 @@ const PlanetView = ({ planet }) => {
   const { id, name, population, rotationPeriod, diameter } = planet;
   return (
     <React.Fragment>
-      <img className="planet-image" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
+      <img className="planet-image" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="person" />
       <div>
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">

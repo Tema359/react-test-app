@@ -1,6 +1,5 @@
 .person-details {
   display: flex;
-  margin-top: 1rem;
   flex-direction: row;
   padding: 1rem;
 }
@@ -17,4 +16,8 @@
 
 .person-details .list-group-item .term{
   margin-right: .5rem;
+}
+
+.card-body .error-button {
+  margin: 10px 10px 0 0;
 }
