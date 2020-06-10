@@ -8,10 +8,13 @@ import ItemDetails, { Record } from '../ItemDetails/ItemDetails';
 import SwapiServ from '../../ServicesSw/SwapiServ';
 import DummySwapiService from '../../ServicesSw/DummySwapiServices';
 import {PersonList, PlanetList, StarshipList} from '../SwComponents/ItemLists';
-import { PersonDetails, PlanetDetails, StarshipDetails } from '../SwComponents/Details';
+import  PersonDetails from '../SwComponents/PersonDetails';
+import  PlanetDetails from '../SwComponents/PlanetDetails';
+import StarshipDetails from '../SwComponents/StarshipDetails';
 import {SwapiServiceProvider} from '../SwapiServiceContext/SwapiServiceContext'
 export default class App extends Component {
-  swapiService = new DummySwapiService();
+
+  swapiService = new SwapiServ();
 
   state = {
     showRandomPlanet: true,
@@ -28,7 +31,7 @@ export default class App extends Component {
   render() {
     const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
-    const { getPerson, getStarship, getPersonImage, getStarshipImage, getAllPeople, getAllPlanets } = this.swapiService;
+    const { getPerson, getStarship, getPersonImage, getStarshipImage } = this.swapiService;
 
     const personDetails = (
       <ItemDetails
